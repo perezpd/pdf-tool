@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>pdf-tool · Traced PDF</title>
+    <meta name="description" content="Convert every glyph of a PDF into vector outlines, entirely in your browser." />
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%232f5bd3'/%3E%3Cpath d='M9 22V10h7a4 4 0 0 1 0 8h-7' fill='none' stroke='white' stroke-width='3'/%3E%3C/svg%3E" />
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body>
+    <main class="wrap">
+      <header>
+        <h1>pdf-tool <span class="tag">PDF trazado</span></h1>
+        <p class="lead">
+          Turns every glyph into a vector outline. The pages look the same and stay sharp at any
+          zoom, but the text can no longer be selected, copied or searched.
+        </p>
+      </header>
+
+      <label id="drop" class="drop" tabindex="0">
+        <input id="file" type="file" accept="application/pdf,.pdf" hidden />
+        <svg aria-hidden="true" viewBox="0 0 24 24" width="36" height="36"><path d="M12 16V4m0 0-4 4m4-4 4 4M5 15v3a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <strong>Choose a PDF</strong>
+        <span class="muted">or drop it here</span>
+      </label>
+
+      <section id="job" class="job" hidden>
+        <div class="row">
+          <span id="job-name" class="name"></span>
+          <span id="job-size" class="muted"></span>
+        </div>
+        <div id="bar" class="bar" role="progressbar" aria-valuemin="0" aria-valuemax="100"><div></div></div>
+        <p id="status" class="status" aria-live="polite"></p>
+        <div id="result" class="result" hidden>
+          <a id="download" class="btn" download>Download traced PDF</a>
+          <button id="again" class="btn ghost" type="button">Trace another file</button>
+        </div>
+      </section>
+
+      <details class="notes">
+        <summary>Good to know</summary>
+        <ul>
+          <li>Your file never leaves this device. Ghostscript runs in your browser as WebAssembly.</li>
+          <li>The first run downloads about 15 MB. After that, the browser loads it from its cache.</li>
+          <li>The output is usually somewhat larger than the input.</li>
+          <li>Form fields, annotations and Type 3 fonts may not survive the conversion. Check the result.</li>
+          <li>This only deters copying: screenshots and OCR still recover the text. Search and screen-reader access are lost by design.</li>
+        </ul>
+      </details>
+
+      <footer class="muted">
+        Powered by <a href="https://www.ghostscript.com/" rel="noopener">Ghostscript</a> (AGPL-3.0).
+        <a id="source" href="https://github.com/" rel="noopener">Source code</a>.
+      </footer>
+    </main>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

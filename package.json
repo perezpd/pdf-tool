@@ -1,0 +1,19 @@
+{
+  "name": "pdf-tool",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Turn every glyph of a PDF into vector outlines, in the browser, with Ghostscript WASM.",
+  "license": "AGPL-3.0-or-later",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@okathira/ghostpdl-wasm": "1.1.0"
+  },
+  "devDependencies": {
+    "vite": "^6.4.1"
+  }
+}
